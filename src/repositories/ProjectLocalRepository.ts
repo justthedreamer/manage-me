@@ -1,5 +1,5 @@
-import {AlreadyExistsError} from "../exceptions/AlreadyExistsError";
-import {NotFoundError} from "../exceptions/NotFoundError";
+import {AlreadyExistsError} from "../errors/AlreadyExistsError";
+import {NotFoundError} from "../errors/NotFoundError";
 import type {Project} from "../model/Project";
 import type {IRepository} from "./IRepository";
 
