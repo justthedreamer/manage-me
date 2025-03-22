@@ -1,0 +1,30 @@
+@use "styles/ease-in-animation";
+@use "styles/scroller";
+
+:root {
+  --highlight: #f7f7f9;
+  --highlight-blur: rgba(247 247 249, .5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto !important;
+}
+
+.bg-highlight {
+  background-color: var(--highlight) !important;
+}
+
+.bg-blur {
+  background-color: var(--highlight-blur) !important;
+  backdrop-filter: blur(1px);
+}
+
+.max-width {
+  max-width: 1440px;
+}
