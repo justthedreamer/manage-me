@@ -7,26 +7,26 @@ export interface IRepository<TEntity, EntityKeyType> {
      * @param {EntityKeyType} id - Unique entity ID.
      * @returns {TEntity | null} - Entity or null if was not found.
      */
-    getById(id: EntityKeyType): TEntity | null
+    getById(id: EntityKeyType): TEntity | null;
 
     /**
      *Adds entity to the repository.
      * @param {TEntity} entity - Entity to add.
      * @throws {AlreadyExistsError} - If entity already exists.
      */
-    add(entity: TEntity): void
+    add(entity: TEntity): void;
 
     /**
      *Updates entity in repository.
      * @param {TEntity} entity
      * @throws {NotFoundError} - If entity was not found.
      */
-    update(entity: TEntity): void
+    update(entity: TEntity): void;
 
     /**
      *Removes entity from repository.
      * @param {EntityKeyType} id
      * @throws {NotFoundError} - If entity was not found.
      */
-    remove(id: EntityKeyType): void
+    remove(id: EntityKeyType): void;
 }
