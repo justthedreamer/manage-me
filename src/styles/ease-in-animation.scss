@@ -1,0 +1,34 @@
+$start-shift-x: 25%;
+$start-shift-y: 25%;
+
+@mixin ease-in-animation($direction, $translate-value) {
+  transform: translate#{$direction}($translate-value);
+  animation: ease-in-animation .3s forwards;
+}
+
+.ease-in-top {
+  @include ease-in-animation(Y, -$start-shift-y);
+}
+
+.ease-in-bottom {
+  @include ease-in-animation(Y, $start-shift-y);
+}
+
+.ease-in-left {
+  @include ease-in-animation(X, -$start-shift-x);
+}
+
+.ease-in-right {
+  @include ease-in-animation(X, $start-shift-x);
+}
+
+@keyframes ease-in-animation {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    transform: translateX(0);
+  }
+}

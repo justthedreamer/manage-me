@@ -1,14 +1,22 @@
-import {createApp} from 'vue'
-import './style.css'
-import App from './App.vue'
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css"
+import * as bootstrap from "bootstrap"
+import "./style.scss";
+import App from "./App.vue";
+import {createApp} from "vue";
+import {createPinia} from "pinia";
+import {seedProjectsInLocalStorage} from "./seed/LocalStorageSeeds.ts";
 import router from "./routing/Router";
 
-const app = createApp(App)
+export {bootstrap};
 
-app.config.errorHandler = (err, vm, info) => {
-    console.error("Global error handler: ", err, info)
-}
+const pinia = createPinia();
+const app = createApp(App);
 
-app.use(router)
+seedProjectsInLocalStorage();
 
-app.mount('#app')
+app.use(pinia);
+app.use(router);
+
+app.mount("#app");
+

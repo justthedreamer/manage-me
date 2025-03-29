@@ -1,11 +1,13 @@
-export class Project {
-    id: number;
-    name: string;
-    description: string;
+import type {ProjectStory} from "./ProjectStory.ts";
+import type {UUIDTypes} from "uuid";
 
-    constructor(id: number, name: string, description: string) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+/**
+ * Represents project.
+ */
+export type Project = {
+    id: UUIDTypes,
+    name: string,
+    description: string,
+    stories: ProjectStory[]
 }
+
