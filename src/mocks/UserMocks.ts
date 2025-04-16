@@ -1,31 +1,34 @@
 import {newGuid} from "../helpers/GuidHelper.ts";
-import { UserRole } from "../model/enums/UserRole.ts";
-import type {User} from "../model/User.ts";
+import {UserRole} from "../model/enums/UserRole.ts";
+import {Admin, Developer, Devops, User} from "../model/User.ts";
 import {projectMock} from "./ProjectMocks.ts";
 
-
-export const adminUserMock: User= {
-    id: newGuid(),
-    name: "John",
-    surname: "Admin",
-    role: UserRole.Admin,
-    attachedProjectId: projectMock.id
-}
-
-export const devopsUserMock : User = {
+export const devopsUserMock: Devops = {
     id: newGuid(),
     name: "John",
     surname: "Devops",
-    role: UserRole.Devops,
+    role: UserRole.DEVOPS,
     attachedProjectId: projectMock.id,
-}
+};
 
-export const developerUserMock: User = {
+export const developerUserMock: Developer = {
     id: newGuid(),
     name: "John",
     surname: "Developer",
-    role : UserRole.Developer,
+    role: UserRole.DEVELOPER,
     attachedProjectId: projectMock.id,
-}
+};
 
-export const usersMock : User[] = [adminUserMock,devopsUserMock,developerUserMock]
+export const adminUserMock: Admin = {
+    id: newGuid(),
+    name: "John",
+    surname: "Admin",
+    role: UserRole.ADMIN,
+    attachedProjectId: projectMock.id,
+};
+
+export const usersMocks: User[] = [
+    adminUserMock,
+    devopsUserMock,
+    developerUserMock,
+];
