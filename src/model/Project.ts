@@ -1,13 +1,12 @@
-import type {ProjectStory} from "./ProjectStory.ts";
+import type {Story} from "./Story.ts";
 import type {UUIDTypes} from "uuid";
 
 /**
  * Represents project.
  */
 export type Project = {
-    id: UUIDTypes,
-    name: string,
-    description: string,
-    stories: ProjectStory[]
-}
-
+    id: UUIDTypes;
+    name: string;
+    description: string;
+    stories: Story[];
+};
