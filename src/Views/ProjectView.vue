@@ -1,24 +1,45 @@
 <script setup lang="ts">
 import {Routes} from "../routing/Routes.ts";
-import ProjectStoriesBox from "../components/Project/ProjectStory/ProjectStoriesBox.vue";
 import {useProjectStore} from "../stores/Project/ProjectStore.ts";
 import {storeToRefs} from "pinia";
-import ProjectStoryForm from "../components/Project/ProjectStory/ProjectStoryForm.vue";
+import StoryForm from "../components/Story/StoryForm.vue";
+import Card from "../components/UI/Card.vue";
+import {useStoryFormStore} from "../stores/Story/StoryFormStore.ts";
+import StoriesKanban from "../components/Story/StoriesKanban.vue";
 
-const store = useProjectStore();
-const {attachedProject} = storeToRefs(store);
-store.syncAttachedProject()
+// stores
+const projectStore = useProjectStore();
+const storyFormStore = useStoryFormStore();
+
+const {attachedProject} = storeToRefs(projectStore);
+projectStore.syncAttachedProject()
 </script>
 
 <template>
-  <project-story-form/>
   <div v-if="attachedProject" id="attached-project-wrapper">
+    <story-form/>
     <header>
       <h2>{{ attachedProject.name }}</h2>
       <p>{{ attachedProject.description }}</p>
       <hr>
     </header>
-    <project-stories-box :project="attachedProject"/>
+
+    <card class="bg-highlight">
+      <template v-slot:header-content>
+        <h2>Stories</h2>
+        <button class="btn btn-primary ms-auto"
+                @click="storyFormStore.openCreateForm()">Add Story
+        </button>
+      </template>
+
+      <template v-slot:main-content>
+        <p v-if="!attachedProject.stories.length"
+           class="text-center text-secondary fst-italic p-5">
+          This project doesn't have any stories right now.
+        </p>
+        <stories-kanban v-else/>
+      </template>
+    </card>
   </div>
 
   <div v-else>
