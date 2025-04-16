@@ -1,41 +1,41 @@
 import {defineStore} from "pinia";
 import type {User} from "../../model/User.ts";
-import {registeredUserMock} from "../../mocks/UserMocks.ts";
 import type {UUIDTypes} from "uuid";
 import {UserNotLoggedInError} from "../../errors/UserNotLoggedInError.ts";
+import {devopsUserMock} from "../../mocks/UserMocks.ts";
 
 export interface UserState {
-    user: User | null
+    user: User | null;
 }
 
-export const useUserStore = defineStore('userStore', {
+export const useUserStore = defineStore("userStore", {
     state: (): UserState => {
         return {
-            user: registeredUserMock,
-        }
+            user: devopsUserMock,
+        };
     },
     getters: {
         attachedProjectId(): UUIDTypes | null {
-            if (!this.user) return null
+            if (!this.user) return null;
             return this.user?.attachedProjectId;
         },
         getUserSession(): User {
-            return ensureUserLoggedIn(this.user)
-        }
+            return ensureUserLoggedIn(this.user);
+        },
     },
     actions: {
         login() {
-            this.user = registeredUserMock;
+            this.user = devopsUserMock;
         },
         logout() {
             this.user = null;
         },
         attachProject(projectId: UUIDTypes) {
-            ensureUserLoggedIn(this.user)
+            ensureUserLoggedIn(this.user);
             this.user!.attachedProjectId = projectId;
-        }
-    }
-})
+        },
+    },
+});
 
 export function ensureUserLoggedIn(user: User | null): User {
     if (!user) throw new UserNotLoggedInError("User not logged in.");
