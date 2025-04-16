@@ -30,5 +30,6 @@ div {
   top: 10px;
   max-width: 450px;
   height: 100vh;
+  z-index: 1000 !important;
 }
 </style>
