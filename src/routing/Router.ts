@@ -3,7 +3,7 @@ import {Routes} from "./Routes.ts";
 
 const router = createRouter({
     history: createWebHistory(),
-    routes: Routes.All
-})
+    routes: Routes.All,
+});
 
 export default router;

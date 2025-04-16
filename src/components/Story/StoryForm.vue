@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useStoryFormStore} from "../../stores/Project/ProjectStoryFormStore.ts";
+import {useStoryFormStore} from "../../stores/Story/StoryFormStore.ts";
 import {storeToRefs} from "pinia";
 import FullScreenWrapper from "../Common/FullScreenWrapper.vue";
 import {Priority} from "../../model/enums/Priority.ts";
