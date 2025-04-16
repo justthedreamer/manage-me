@@ -51,16 +51,13 @@ const isAttached = (projectId: UUIDTypes) => {
     </thead>
 
     <tbody>
-    <tr v-for="project in allAssociatedProjects"
-        :class="{'table-success': isAttached(project.id)}"
+    <tr v-for="project in allAssociatedProjects" :class="{ 'table-success': isAttached(project.id) }"
         :key="project.id.toString()">
       <td>{{ project.name }}</td>
       <td>{{ project.description }}</td>
       <td>
-        <button
-            class="btn btn-primary"
-            :class="{ 'disabled btn-secondary': isAttached(project.id) }"
-            @click="userStore.attachProject(project.id)">
+        <button class="btn btn-primary" :class="{ 'disabled btn-secondary': isAttached(project.id) }"
+                @click="userStore.attachProject(project.id)">
           Attach
         </button>
       </td>
@@ -69,6 +66,4 @@ const isAttached = (projectId: UUIDTypes) => {
   </table>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
