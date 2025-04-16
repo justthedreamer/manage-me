@@ -1,37 +1,37 @@
 import {defineStore} from "pinia";
-import {ProjectStoryPriority} from "../../model/enums/ProjectStoryPriority.ts";
-import {ProjectStoryState} from "../../model/enums/ProjectStoryState.ts";
+import {Priority} from "../../model/enums/Priority.ts";
+import {WorkingState} from "../../model/enums/WorkingState.ts";
 import {assertNever} from "../../helpers/SwitchHelper.ts";
-import type {ProjectStory} from "../../model/ProjectStory.ts";
+import type {Story} from "../../model/Story.ts";
 import projectValidator from "../../validation/ProjectValidator.ts";
 import {InvalidArgumentError} from "../../errors/InvalidArgumentError.ts";
-import {useProjectStore} from "./ProjectStore.ts";
+import {useProjectStore} from "../Project/ProjectStore.ts";
 import {InvalidOperationError} from "../../errors/InvalidOperationError.ts";
 
 export type ProjectStoryFormMode = 'create' | 'update';
 
-export interface ProjectStoryFormStoreState {
+export interface StoryFormState {
     mode: ProjectStoryFormMode;
     opened: boolean
-    story: ProjectStory | null
+    story: Story | null
     storyName: string;
     storyDescription: string;
-    storyPriority: ProjectStoryPriority;
-    storyState: ProjectStoryState,
+    storyPriority: Priority;
+    storyState: WorkingState,
     storyNameErrorMessage: string,
     storyDescriptionErrorMessage: string,
 }
 
-export const useProjectStoryFormStore = defineStore("ProjectStoryFormStore", {
-    state: (): ProjectStoryFormStoreState => {
+export const useStoryFormStore = defineStore("ProjectStoryFormStore", {
+    state: (): StoryFormState => {
         return {
             opened: false,
             mode: 'create',
             story: null,
             storyName: "",
             storyDescription: "",
-            storyPriority: ProjectStoryPriority.low,
-            storyState: ProjectStoryState.todo,
+            storyPriority: Priority.LOW,
+            storyState: WorkingState.TODO,
             storyNameErrorMessage: "",
             storyDescriptionErrorMessage: "",
         }
@@ -54,7 +54,7 @@ export const useProjectStoryFormStore = defineStore("ProjectStoryFormStore", {
             this.mode = "create";
             this.opened = true;
         },
-        openUpdateForm(story: ProjectStory) {
+        openUpdateForm(story: Story) {
             this.story = story;
             this.mode = "update";
             this.opened = true;
@@ -68,8 +68,8 @@ export const useProjectStoryFormStore = defineStore("ProjectStoryFormStore", {
             this.opened = false;
             this.storyName = "";
             this.storyDescription = "";
-            this.storyPriority = ProjectStoryPriority.low;
-            this.storyState = ProjectStoryState.todo;
+            this.storyPriority = Priority.LOW;
+            this.storyState = WorkingState.TODO;
             this.storyNameErrorMessage = "";
             this.storyDescriptionErrorMessage = "";
         },
@@ -77,11 +77,12 @@ export const useProjectStoryFormStore = defineStore("ProjectStoryFormStore", {
             this.validateInputs()
             switch (this.mode) {
                 case "create": {
-                    const story: Omit<ProjectStory, "id" | "createdAt" | "userId" | "projectId"> = {
+                    const story: Omit<Story, "id" | "createdAt" | "userId" | "projectId"> = {
                         name: this.storyName,
                         description: this.storyDescription,
                         priority: this.storyPriority,
                         state: this.storyState,
+                        tasks: [],
                     }
                     const projectStore = useProjectStore();
                     projectStore.addProjectStory(story)
