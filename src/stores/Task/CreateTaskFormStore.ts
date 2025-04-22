@@ -129,11 +129,11 @@ export const useCreateTaskFormStore = defineStore("Create task form store", {
                 user = userStore.getUserSession;
             } else {
                 user = usersMocks.find(user => user.id === this.fields.selectedEmployee!.id);
-                if (!user) throw new NotFoundError("User not found.");
+                if (!user) throw new NotFoundError("user not found.");
             }
 
             if (user.role !== UserRole.DEVOPS && user.role !== UserRole.DEVELOPER) {
-                throw new InvalidOperationError("User role should be DEVOPS or DEVELOPER.");
+                throw new InvalidOperationError("user role should be DEVOPS or DEVELOPER.");
             }
 
             const now = new Date();

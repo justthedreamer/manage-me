@@ -38,6 +38,6 @@ export const useUserStore = defineStore("userStore", {
 });
 
 export function ensureUserLoggedIn(user: User | null): User {
-    if (!user) throw new UserNotLoggedInError("User not logged in.");
+    if (!user) throw new UserNotLoggedInError("user not logged in.");
     return user;
 }

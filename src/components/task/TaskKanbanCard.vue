@@ -2,9 +2,9 @@
 import {type PropType} from "vue";
 import {DoingTask, DoneTask, type Task} from "../../model/Task.ts";
 import {formatDateToEuropean} from "../../helpers/DateHelper.ts";
-import PriorityBadge from "../Common/PriorityBadge.vue";
-import TimeHoursBadge from "../Badges/TimeHoursBadge.vue";
-import UserBadge from "../Badges/UserBadge.vue";
+import PriorityBadge from "../common/PriorityBadge.vue";
+import TimeHoursBadge from "../badges/TimeHoursBadge.vue";
+import UserBadge from "../badges/UserBadge.vue";
 
 defineProps({
   task: {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useStoryFormStore} from "../../stores/Story/StoryFormStore.ts";
 import {storeToRefs} from "pinia";
-import FullScreenWrapper from "../Common/FullScreenWrapper.vue";
+import FullScreenWrapper from "../common/FullScreenWrapper.vue";
 import {Priority} from "../../model/enums/Priority.ts";
 import {WorkingState} from "../../model/enums/WorkingState.ts";
 
@@ -23,7 +23,7 @@ const {
 
 <template>
   <full-screen-wrapper class="bg-blur" v-if="opened">
-    <!--  Project Story Form  -->
+    <!--  Project story Form  -->
     <div id="project-story-form"
          class="position-absolute rounded-2 w-75 p-4 bg-light shadow border border-1 ease-in-top"
          style="max-width: 780px">

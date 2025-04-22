@@ -2,7 +2,7 @@
 import {useRouter} from "vue-router";
 import {Routes} from "../../routing/Routes.ts";
 import {useUserStore} from "../../stores/User/UserStore.ts";
-import MaxWidthLimiter from "../Common/MaxWidthLimiter.vue";
+import MaxWidthLimiter from "../common/MaxWidthLimiter.vue";
 import {storeToRefs} from "pinia";
 
 const router = useRouter();
@@ -38,7 +38,7 @@ function isCurrentRoute(name: string | symbol | undefined): boolean {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Navigation options -->
+      <!-- navigation options -->
       <div class="collapse navbar-collapse gap-2"
            id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-lg-0 gap-3 d-flex align-items-start">

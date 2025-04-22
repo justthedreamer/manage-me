@@ -25,7 +25,7 @@ export interface StoryFormState {
 export const useStoryFormStore = defineStore("ProjectStoryFormStore", {
     state: (): StoryFormState => {
         return {
-            opened: false,
+            opened: true,
             mode: 'create',
             story: null,
             storyName: "",
@@ -40,9 +40,9 @@ export const useStoryFormStore = defineStore("ProjectStoryFormStore", {
         formTitle: (state) => {
             switch (state.mode) {
                 case "create":
-                    return "Create Project Story";
+                    return "Create Project story";
                 case "update":
-                    return "Update Project Story";
+                    return "Update Project story";
                 default:
                     assertNever(state.mode)
             }

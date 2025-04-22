@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {PropType} from "vue";
 import type {Story} from "../../model/Story.ts";
-import PriorityBadge from "../Common/PriorityBadge.vue";
+import PriorityBadge from "../common/PriorityBadge.vue";
 import {formatDateToEuropean} from "../../helpers/DateHelper.ts";
 import {useRouter} from "vue-router";
 import {Routes} from "../../routing/Routes.ts";

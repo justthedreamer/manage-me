@@ -2,10 +2,10 @@
 import {Routes} from "../routing/Routes.ts";
 import {useProjectStore} from "../stores/Project/ProjectStore.ts";
 import {storeToRefs} from "pinia";
-import StoryForm from "../components/Story/StoryForm.vue";
-import Card from "../components/UI/Card.vue";
+import StoryForm from "../components/story/StoryForm.vue";
+import Card from "../components/ui/Card.vue";
 import {useStoryFormStore} from "../stores/Story/StoryFormStore.ts";
-import StoriesKanban from "../components/Story/StoriesKanban.vue";
+import StoriesKanban from "../components/story/StoriesKanban.vue";
 
 // stores
 const projectStore = useProjectStore();

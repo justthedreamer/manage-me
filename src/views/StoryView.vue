@@ -6,12 +6,12 @@ import {useProjectStore} from "../stores/Project/ProjectStore.ts";
 import {storeToRefs} from "pinia";
 import {Routes} from "../routing/Routes.ts";
 import {useStoryFormStore} from "../stores/Story/StoryFormStore.ts";
-import StoryForm from "../components/Story/StoryForm.vue";
-import PriorityBadge from "../components/Common/PriorityBadge.vue";
-import WorkingStateBadge from "../components/Badges/WorkingStateBadge.vue";
-import Card from "../components/UI/Card.vue";
-import TaskKanban from "../components/Task/TaskKanban.vue";
-import CreateTaskForm from "../components/Task/CreateTaskForm.vue";
+import StoryForm from "../components/story/StoryForm.vue";
+import PriorityBadge from "../components/common/PriorityBadge.vue";
+import WorkingStateBadge from "../components/badges/WorkingStateBadge.vue";
+import Card from "../components/ui/Card.vue";
+import TaskKanban from "../components/task/TaskKanban.vue";
+import CreateTaskForm from "../components/task/CreateTaskForm.vue";
 import {useCreateTaskFormStore} from "../stores/Task/CreateTaskFormStore.ts";
 
 const projectStore = useProjectStore()

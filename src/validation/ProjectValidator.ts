@@ -1,30 +1,23 @@
 import type {IProjectValidator} from "./interfaces/IProjectValidator.ts";
+import {validateTextField} from "./utils/FieldValidator.ts";
 
 class ProjectValidator implements IProjectValidator {
-    validateProjectDescription(description: string, failCb: (failedMessage: string) => void): void {
-        if (!description) failCb("Project description is required.");
-
-        if (description.trim().length < 5) failCb("Project description must be at least 5 characters long.");
+    validateProjectName(name: string, failCb: (msg: string) => void): void {
+        validateTextField(name, "Project name", failCb);
     }
 
-    validateProjectName(name: string, failCb: (failedMessage: string) => void): void {
-        if (!name) failCb("Project name is required.");
-
-        if (name.trim().length < 5) failCb("Project name must be at least 5 characters long.");
+    validateProjectDescription(description: string, failCb: (msg: string) => void): void {
+        validateTextField(description, "Project description", failCb);
     }
 
-    validateStoryDescription(description: string, failCb: (failedMessage: string) => void): void {
-        if (!description) failCb("Project description is required!");
-
-        if (description.trim().length < 5) failCb("Story description must be at least 5 characters long.");
+    validateStoryName(name: string, failCb: (msg: string) => void): void {
+        validateTextField(name, "Story name", failCb);
     }
 
-    validateStoryName(name: string, failCb: (failedMessage: string) => void): void {
-        if (!name) failCb("Project name is required!");
-
-        if (name.trim().length < 5) failCb("Story name must be at least 5 characters long.");
+    validateStoryDescription(description: string, failCb: (msg: string) => void): void {
+        validateTextField(description, "Story description", failCb);
     }
 }
 
-const validator = new ProjectValidator();
-export default validator as IProjectValidator;
+const projectValidator = new ProjectValidator();
+export default projectValidator as IProjectValidator;

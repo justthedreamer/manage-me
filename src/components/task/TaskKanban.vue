@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
-import KanbanCol from "../Kanban/KanbanCol.vue";
-import Kanban from "../Kanban/Kanban.vue";
+import KanbanCol from "../kanban/KanbanCol.vue";
+import Kanban from "../kanban/Kanban.vue";
 import {useProjectStore} from "../../stores/Project/ProjectStore.ts";
 import {storeToRefs} from "pinia";
 import {computed, type PropType} from "vue";

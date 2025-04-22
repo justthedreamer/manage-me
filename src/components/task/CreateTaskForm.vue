@@ -2,13 +2,13 @@
 import {computed, ref} from "vue";
 import {Priority} from "../../model/enums/Priority.ts";
 import {useCreateTaskFormStore} from "../../stores/Task/CreateTaskFormStore.ts";
-import FullScreenWrapper from "../Common/FullScreenWrapper.vue";
-import PriorityBadge from "../Common/PriorityBadge.vue";
+import FullScreenWrapper from "../common/FullScreenWrapper.vue";
+import PriorityBadge from "../common/PriorityBadge.vue";
 import {usersMocks} from "../../mocks/UserMocks.ts";
 import {UserRole} from "../../model/enums/UserRole.ts";
 import {storeToRefs} from "pinia";
 import {Developer, Devops} from "../../model/User.ts";
-import Hover from "../UI/Hover.vue";
+import Hover from "../ui/Hover.vue";
 
 const formStore = useCreateTaskFormStore();
 const {fields, validationErrorMessages} = storeToRefs(formStore)
