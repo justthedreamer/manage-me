@@ -1,9 +1,10 @@
-export interface ITaskValidator {
-    validateName(name: string, failCb: (msg: string) => void): void;
+import type {IBaseValidator} from "./IBaseValidator.ts";
 
-    validateDescription(description: string, failCb: (msg: string) => void): void;
+export interface TaskValidationFields {
+    name: string;
+    description: string;
+    estimatedFinishTime: number;
+}
 
-    validateEstimatedFinishTime(hours: number, failCb: (msg: string) => void): void;
-
-    validateEmployeeAssignment(option: string, selectedEmployee: unknown, failCb: (msg: string) => void): void;
+export interface ITaskValidator extends IBaseValidator<TaskValidationFields> {
 }

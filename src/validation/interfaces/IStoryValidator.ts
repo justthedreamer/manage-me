@@ -1,5 +1,9 @@
-export interface IStoryValidator {
-    validateName(name: string, failCb: (msg: string) => void): void;
+import type {IBaseValidator} from "./IBaseValidator.ts";
 
-    validateDescription(description: string, failCb: (msg: string) => void): void;
+export interface StoryValidationFields {
+    name: string;
+    description: string;
+}
+
+export interface IStoryValidator extends IBaseValidator<StoryValidationFields> {
 }
