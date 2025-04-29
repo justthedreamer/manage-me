@@ -11,6 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuth(builder.Configuration);
 builder.Services.AddAuthorization();
+builder.Services.AddCors(setup =>
+{
+    setup.AddPolicy("AllowFrontend", policyBuilder =>
+    {
+        policyBuilder
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .Build();
+    });
+});
 
 var app = builder.Build();
 
@@ -64,6 +76,7 @@ app.MapGet("/me", (ClaimsPrincipal userClaims) =>
     return Results.Ok(response);
 }).RequireAuthorization();
 
+app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.Run();
