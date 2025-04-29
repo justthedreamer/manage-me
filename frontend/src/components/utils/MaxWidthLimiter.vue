@@ -8,7 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <div style="margin: 0 auto" :style="{'max-width': maxWidth ? `${maxWidth} !important` : '1440px !important'}">
+  <div class="m-0 m-auto h-100"
+       :style="{'max-width': maxWidth ? `${maxWidth} !important` : '1440px !important'}">
     <slot></slot>
   </div>
 </template>

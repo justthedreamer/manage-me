@@ -3,7 +3,9 @@ interface Props {
   id: string;
   label: string;
   modelValue: string;
-  errorMessage: string;
+  errorMessage?: string;
+  placeholder?: string;
+  type?: 'text' | 'password'
 }
 
 interface Emits {
@@ -24,8 +26,9 @@ function onInput(e: Event) {
   <div class="d-flex flex-column">
     <label :for="id" class="form-label">{{ label }}</label>
     <input :id="id"
-           type="text"
+           :type="type ?? 'text'"
            class="form-control"
+           :placeholder="placeholder"
            :value="modelValue"
            @input="onInput">
     <p class="form-text text-danger">{{ errorMessage }}</p>

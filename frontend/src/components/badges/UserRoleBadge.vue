@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type {PropType} from "vue";
 import {UserRole} from "../../model/enums/UserRole.ts";
 
-defineProps({
-  role: {
-    type: Number as PropType<UserRole>
-  }
-})
+interface Props {
+  role: UserRole
+}
+
+defineProps<Props>()
 
 </script>
 

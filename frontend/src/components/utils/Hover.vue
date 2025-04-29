@@ -1,7 +1,8 @@
+<!--suppress CommaExpressionJS -->
 <script setup lang="ts">
 interface Props {
   effect: 'fade'
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 defineProps<Props>()
@@ -9,7 +10,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="hover-wrapper pointer" :class="effect, {'off': disabled}">
+  <div class="hover-wrapper pointer" :class="effect,{'off': disabled}">
     <slot></slot>
   </div>
 </template>

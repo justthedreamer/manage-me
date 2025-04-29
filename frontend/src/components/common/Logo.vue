@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import type {PropType} from "vue";
+interface Props {
+  theme: 'text-dark' | 'text-light',
+}
 
-export type LogoThemeType = "text-dark" | "text-light";
-
-defineProps({
-  theme: {
-    type: String as PropType<LogoThemeType>,
-    required: true,
-  }
-})
+defineProps<Props>()
 
 </script>
 
 <template>
-  <div class="logo">
-    <h1
-        :class="theme"
-        class="text-uppercase">
-      manage<span class="text-primary fw-bold">!</span>me
-    </h1>
-  </div>
+  <h1 class="text-uppercase">
+    <span :class="theme">manage</span>
+    <span class="text-primary fw-bold">!</span>
+    <span :class="theme">me</span>
+  </h1>
 </template>

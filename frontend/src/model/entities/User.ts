@@ -1,5 +1,5 @@
-import type { UUIDTypes } from "uuid";
-import { UserRole } from "../enums/UserRole.ts";
+import type {UUIDTypes} from "uuid";
+import {UserRole} from "../enums/UserRole.ts";
 
 export class User {
     id: UUIDTypes;

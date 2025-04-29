@@ -6,7 +6,7 @@ import {projectRepository} from "../../repositories";
 import {useUIMessageStore} from "../common/UIMessageStore.ts";
 import {ErrorUIMessage, SuccessUIMessage} from "../../model/UIMessage.ts";
 import {assertUserDefined} from "../../helpers/Guards.ts";
-import {devopsUserMock} from "../../mocks/UserMocks.ts";
+import {ATTACHED_PROJECT_ID_KEY} from "../../config/LocalstorageKeys.ts";
 
 interface State {
     user: User | null;
@@ -16,7 +16,7 @@ interface State {
 export const useUserStore = defineStore("userStore", {
     state: (): State => {
         return {
-            user: devopsUserMock,
+            user: null,
             attachedProject: null,
         };
     },
@@ -29,24 +29,30 @@ export const useUserStore = defineStore("userStore", {
         }
     },
     actions: {
-        fetchAttachedProject() {
-            this.attachedProject = projectRepository.getAll().find(project => project.id === this.user?.attachedProjectId) ?? null;
+        fetchAttachedProject(): void {
+            if (this.user) {
+                const id = localStorage.getItem(ATTACHED_PROJECT_ID_KEY)
+                this.attachedProject = projectRepository.getAll().find(project => project.id === id) ?? null;
+                this.user.attachedProjectId = id;
+            }
         },
-        login() {
-            this.user = devopsUserMock;
-            this.fetchAttachedProject();
-        },
-        logout() {
-            this.user = null;
-            this.attachedProject = null;
+        setUser(user: User | null): void {
+            this.user = user;
+
+            if (this.user) {
+                this.fetchAttachedProject();
+            } else {
+                this.attachedProject = null;
+            }
         },
         attachProject(projectId: UUIDTypes) {
             try {
                 assertUserDefined(this.user)
                 this.user.attachedProjectId = projectId;
-                this.fetchAttachedProject()
+                localStorage.setItem(ATTACHED_PROJECT_ID_KEY, projectId.toString());
+                this.fetchAttachedProject();
                 useUIMessageStore().queue(new SuccessUIMessage("Project attached successfully!"))
-            } catch {
+            } catch (error) {
                 useUIMessageStore().queue(new ErrorUIMessage("You are not logged in."));
             }
         }

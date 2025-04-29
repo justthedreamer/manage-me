@@ -2,7 +2,7 @@ import {AlreadyExistsError} from "../errors/AlreadyExistsError";
 import {NotFoundError} from "../errors/NotFoundError";
 import {Project} from "../model/entities/Project.ts";
 import type {IProjectRepository} from "./interfaces/IProjectRepository.ts";
-import {PROJECTS_LOCALSTORAGE_KEY} from "../config/LocalstorageKeys.ts";
+import {PROJECTS_KEY} from "../config/LocalstorageKeys.ts";
 import type {UUIDTypes} from "uuid";
 import {useUserStore} from "../stores/user/UserStore.ts";
 import {assertProjectDefined} from "../helpers/Guards.ts";
@@ -58,7 +58,7 @@ export class ProjectLocalRepository implements IProjectRepository {
     }
 
     private loadProjects(): Project[] {
-        const raw = localStorage.getItem(PROJECTS_LOCALSTORAGE_KEY) ?? "[]";
+        const raw = localStorage.getItem(PROJECTS_KEY) ?? "[]";
 
         try {
             return JSON.parse(raw).map(Project.fromJSON);
@@ -69,7 +69,7 @@ export class ProjectLocalRepository implements IProjectRepository {
     }
 
     private saveProjects(projects: Project[]): void {
-        localStorage.setItem(PROJECTS_LOCALSTORAGE_KEY, JSON.stringify(projects));
+        localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
     }
 
     private projectExists(id: UUIDTypes, projects: Project[]): boolean {
