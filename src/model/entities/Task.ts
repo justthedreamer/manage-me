@@ -1,7 +1,7 @@
 import type {UUIDTypes} from "uuid";
-import type {Developer, Devops} from "./User";
-import type {Priority} from "./enums/Priority.ts";
-import {WorkingState} from "./enums/WorkingState.ts";
+import type {Priority} from "../enums/Priority.ts";
+import {WorkingState} from "../enums/WorkingState.ts";
+import type {User} from "./User.ts";
 
 
 export abstract class Task {
@@ -10,7 +10,7 @@ export abstract class Task {
     description: string;
     priority: Priority;
     projectStoryId: UUIDTypes;
-    estimatedFinishTimeHours: number;
+    estimatedFinishTime: number;
     creationDate: Date;
     abstract readonly state: WorkingState;
 
@@ -28,9 +28,55 @@ export abstract class Task {
         this.description = description;
         this.priority = priority;
         this.projectStoryId = projectStoryId;
-        this.estimatedFinishTimeHours = estimatedFinishTimeHours;
+        this.estimatedFinishTime = estimatedFinishTimeHours;
         this.creationDate = creationDate;
     }
+
+    static fromJSON(obj: any): Task {
+        switch (obj.state) {
+            case WorkingState.TODO:
+                return new TodoTask(
+                    obj.id,
+                    obj.name,
+                    obj.description,
+                    obj.priority,
+                    obj.projectStoryId,
+                    obj.estimatedFinishTime,
+                    new Date(obj.creationDate)
+                );
+
+            case WorkingState.DOING:
+                return new DoingTask(
+                    obj.id,
+                    obj.name,
+                    obj.description,
+                    obj.priority,
+                    obj.projectStoryId,
+                    obj.estimatedFinishTime,
+                    new Date(obj.creationDate),
+                    new Date(obj.workStartDate),
+                    obj.assignedUser
+                );
+
+            case WorkingState.DONE:
+                return new DoneTask(
+                    obj.id,
+                    obj.name,
+                    obj.description,
+                    obj.priority,
+                    obj.projectStoryId,
+                    obj.estimatedFinishTime,
+                    new Date(obj.creationDate),
+                    new Date(obj.workStartDate),
+                    obj.assignedUser,
+                    new Date(obj.finishDate)
+                );
+
+            default:
+                throw new Error(`Unknown task state: ${obj.state}`);
+        }
+    }
+
 }
 
 export class TodoTask extends Task {
@@ -59,7 +105,7 @@ export class TodoTask extends Task {
 
 export class DoingTask extends Task {
     workStartDate: Date;
-    assignedUser: Devops | Developer;
+    assignedUser: User
     readonly state = WorkingState.DOING;
 
     constructor(
@@ -71,7 +117,7 @@ export class DoingTask extends Task {
         estimatedFinishTimeHours: number,
         creationDate: Date,
         workStartDate: Date,
-        assignedUser: Devops | Developer,
+        assignedUser: User
     ) {
         super(
             id,
@@ -89,7 +135,7 @@ export class DoingTask extends Task {
 
 export class DoneTask extends Task {
     workStartDate: Date;
-    assignedUser: Devops | Developer;
+    assignedUser: User;
     finishDate: Date;
     readonly state = WorkingState.DONE;
 
@@ -102,7 +148,7 @@ export class DoneTask extends Task {
         estimatedFinishTimeHours: number,
         creationDate: Date,
         workStartDate: Date,
-        assignedUser: Devops | Developer,
+        assignedUser: User,
         finishDate: Date
     ) {
         super(
