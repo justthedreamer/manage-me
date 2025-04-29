@@ -21,14 +21,14 @@ export class Routes {
 
     static readonly PROJECT_STORY_ROUTE_RECORD: RouteRecordRaw = {
         path: "/project/story/:id",
-        name: "Project story",
+        name: "project story",
         component: StoryView,
         props: true
     }
 
     static readonly PROJECT_ATTACHMENT_RECORD: RouteRecordRaw = {
         path: "/project-attachment",
-        name: "Project Attachment",
+        name: "project Attachment",
         component: ProjectAttachmentView,
     };
     

@@ -1,43 +1,54 @@
 import {defineStore} from "pinia";
-import type {User} from "../../model/User.ts";
+import type {User} from "../../model/entities/User.ts";
 import type {UUIDTypes} from "uuid";
-import {UserNotLoggedInError} from "../../errors/UserNotLoggedInError.ts";
+import {Project} from "../../model/entities/Project.ts";
+import {projectRepository} from "../../repositories";
+import {useUIMessageStore} from "../common/UIMessageStore.ts";
+import {ErrorUIMessage, SuccessUIMessage} from "../../model/UIMessage.ts";
+import {assertUserDefined} from "../../helpers/Guards.ts";
 import {devopsUserMock} from "../../mocks/UserMocks.ts";
 
-export interface UserState {
+interface State {
     user: User | null;
+    attachedProject: Project | null;
 }
 
 export const useUserStore = defineStore("userStore", {
-    state: (): UserState => {
+    state: (): State => {
         return {
             user: devopsUserMock,
+            attachedProject: null,
         };
     },
     getters: {
-        attachedProjectId(): UUIDTypes | null {
-            if (!this.user) return null;
-            return this.user?.attachedProjectId;
+        associatedProjects(): Project[] {
+            return projectRepository.getAll();
         },
-        getUserSession(): User {
-            return ensureUserLoggedIn(this.user);
-        },
+        isLoggedIn(): boolean {
+            return this.user !== null;
+        }
     },
     actions: {
+        fetchAttachedProject() {
+            this.attachedProject = projectRepository.getAll().find(project => project.id === this.user?.attachedProjectId) ?? null;
+        },
         login() {
             this.user = devopsUserMock;
+            this.fetchAttachedProject();
         },
         logout() {
             this.user = null;
+            this.attachedProject = null;
         },
         attachProject(projectId: UUIDTypes) {
-            ensureUserLoggedIn(this.user);
-            this.user!.attachedProjectId = projectId;
-        },
+            try {
+                assertUserDefined(this.user)
+                this.user.attachedProjectId = projectId;
+                this.fetchAttachedProject()
+                useUIMessageStore().queue(new SuccessUIMessage("Project attached successfully!"))
+            } catch {
+                useUIMessageStore().queue(new ErrorUIMessage("You are not logged in."));
+            }
+        }
     },
 });
-
-export function ensureUserLoggedIn(user: User | null): User {
-    if (!user) throw new UserNotLoggedInError("user not logged in.");
-    return user;
-}
