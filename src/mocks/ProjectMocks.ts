@@ -1,18 +1,25 @@
-import type {Project} from "../model/Project.ts";
+import {Project} from "../model/entities/Project.ts"; // adjust path as needed
 
-export const projectMock: Project = {
-    id: "51c02075-c190-4437-8f24-c49949c06f62",
-    name: "Tiramisu",
-    description: "Ulubione przepisy w jednym miejscu.",
-    stories: []
+export function createMockProject(
+    id: string,
+    name: string,
+    description: string,
+    stories = []
+): Project {
+    return new Project(id, name, description, stories);
 }
 
-export const projectsMock: Project[] = [
+export const projectMock = createMockProject(
+    "51c02075-c190-4437-8f24-c49949c06f62",
+    "Tiramisu",
+    "Ulubione przepisy w jednym miejscu."
+);
+
+export const projectsMock = [
     projectMock,
-    {
-        id: "fa81c411-47b5-4e7a-a279-e5ac496c7fb3",
-        name: "AttendMe",
-        description: "Zapisz obecność przy pomocy kod QR.",
-        stories: []
-    }
-]
+    createMockProject(
+        "fa81c411-47b5-4e7a-a279-e5ac496c7fb3",
+        "AttendMe",
+        "Zapisz obecność przy pomocy kod QR."
+    )
+];
