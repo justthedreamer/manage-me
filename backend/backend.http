@@ -1,0 +1,29 @@
+@backend_HostAddress = http://localhost:8080
+@access_token =;
+@refresh_token=;
+
+###
+
+POST {{backend_HostAddress}}/login
+Content-Type: application/json
+
+{
+  "login": "",
+  "password": ""
+}
+
+###
+
+GET {{backend_HostAddress}}/me
+Authorization: Bearer {{access_token}}
+Accept: application/json
+
+###
+
+POST {{backend_HostAddress}}/refresh
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "refreshToken": ""
+}
