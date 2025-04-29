@@ -1,20 +1,15 @@
 <script setup lang="ts">
+interface Props {
+  effect: 'fade'
+  disabled: boolean;
+}
 
-import type {PropType} from "vue";
-
-export type HoverEffect = "fade";
-
-defineProps({
-  effect: {
-    type: String as PropType<HoverEffect>,
-    required: true
-  }
-})
+defineProps<Props>()
 
 </script>
 
 <template>
-  <div class="hover-wrapper" :class="effect">
+  <div class="hover-wrapper pointer" :class="effect, {'off': disabled}">
     <slot></slot>
   </div>
 </template>
@@ -30,10 +25,7 @@ defineProps({
   opacity: 0.5;
 }
 
-.hover-wrapper.fade:hover {
-  opacity: 1;
-}
-
+.hover-wrapper.fade:hover,
 .hover-wrapper.fade.off {
   opacity: 1;
 }

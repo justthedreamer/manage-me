@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type {PropType} from "vue";
-import type {Story} from "../../model/Story.ts";
-import PriorityBadge from "../common/PriorityBadge.vue";
-import {formatDateToEuropean} from "../../helpers/DateHelper.ts";
+import type {Story} from "../../../model/entities/Story.ts";
+import PriorityBadge from "../../badges/PriorityBadge.vue";
+import {formatDateToEuropean} from "../../../helpers/DateHelper.ts";
 import {useRouter} from "vue-router";
-import {Routes} from "../../routing/Routes.ts";
+import {Routes} from "../../../routing/Routes.ts";
 
 const router = useRouter()
 
@@ -18,17 +18,16 @@ const props = defineProps({
 function goDetails() {
   router.push({name: Routes.PROJECT_STORY_ROUTE_RECORD.name, params: {id: props.story!.id.toString()}})
 }
+
 </script>
 
 <template>
-  <div class="border rounded bg-white shadow-sm w-100 p-2 mt-1 mb-1 p-2">
+  <div class="border rounded bg-white shadow-sm w-100 p-2 p-2">
     <header class="d-flex justify-content-between align-items-center text-dark-emphasis gap-1">
       <p class="mb-0">{{ story.name }}</p>
       <priority-badge :priority="story.priority"/>
     </header>
-
     <hr>
-
     <footer class="d-flex justify-content-between align-items-center text-secondary">
       <div>
         <span>{{ formatDateToEuropean(story.createdAt) }}</span>
