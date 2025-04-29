@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {computed, type PropType} from "vue";
-import type {User} from "../../model/User.ts";
+import type {User} from "../../model/entities/User.ts";
 import UserRoleBadge from "./UserRoleBadge.vue";
 import {UserRole} from "../../model/enums/UserRole.ts";
-import {assertNever} from "../../helpers/SwitchHelper.ts";
+import {assertNever} from "../../helpers/Guards.ts";
 
 const props = defineProps({
   user: {
@@ -24,6 +24,7 @@ const badgeColor = computed(() => {
       assertNever(props.user.role)
   }
 })
+
 </script>
 
 <template>
@@ -34,7 +35,3 @@ const badgeColor = computed(() => {
     <span>{{ user.name }} {{ user.surname }}</span>
   </div>
 </template>
-
-<style scoped>
-
-</style>

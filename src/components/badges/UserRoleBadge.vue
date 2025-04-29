@@ -7,6 +7,7 @@ defineProps({
     type: Number as PropType<UserRole>
   }
 })
+
 </script>
 
 <template>
@@ -23,7 +24,3 @@ defineProps({
     <span class="text-uppercase ms-1">admin</span>
   </span>
 </template>
-
-<style scoped>
-
-</style>
