@@ -1,10 +1,11 @@
 import {AlreadyExistsError} from "../errors/AlreadyExistsError";
 import {NotFoundError} from "../errors/NotFoundError";
-import type {Project} from "../model/Project";
+import {Project} from "../model/entities/Project.ts";
 import type {IProjectRepository} from "./interfaces/IProjectRepository.ts";
 import {PROJECTS_LOCALSTORAGE_KEY} from "../config/LocalstorageKeys.ts";
 import type {UUIDTypes} from "uuid";
-import {TaskFactory} from "../factories/TaskFactory";
+import {useUserStore} from "../stores/user/UserStore.ts";
+import {assertProjectDefined} from "../helpers/Guards.ts";
 
 export class ProjectLocalRepository implements IProjectRepository {
     getAll(): Project[] {
@@ -20,7 +21,7 @@ export class ProjectLocalRepository implements IProjectRepository {
         const projects = this.loadProjects();
 
         if (this.projectExists(entity.id, projects)) {
-            throw new AlreadyExistsError("Project already exists.");
+            throw new AlreadyExistsError("project already exists.");
         }
 
         projects.push(entity);
@@ -39,6 +40,12 @@ export class ProjectLocalRepository implements IProjectRepository {
         this.saveProjects(projects);
     }
 
+    updateAttachedProject() {
+        const attachedProject = useUserStore().attachedProject;
+        assertProjectDefined(attachedProject)
+        this.update(attachedProject)
+    }
+
     remove(id: UUIDTypes): void {
         const projects = this.loadProjects();
         const updatedProjects = projects.filter(project => project.id !== id);
@@ -54,18 +61,7 @@ export class ProjectLocalRepository implements IProjectRepository {
         const raw = localStorage.getItem(PROJECTS_LOCALSTORAGE_KEY) ?? "[]";
 
         try {
-            const rawProjects = JSON.parse(raw) as Project[];
-
-            rawProjects.forEach(project => {
-                project.stories.forEach(story => {
-                    story.createdAt = new Date(story.createdAt);
-
-                    if (Array.isArray(story.tasks)) {
-                        story.tasks = story.tasks.map(TaskFactory.fromJSON);
-                    }
-                });
-            });
-            return rawProjects;
+            return JSON.parse(raw).map(Project.fromJSON);
         } catch (error) {
             console.error("Failed to parse projects:", error);
             return [];
