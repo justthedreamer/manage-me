@@ -26,7 +26,7 @@ async function go(route: RouteRecordRaw) {
 </script>
 
 <template>
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg shadow-sm">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm">
     <max-width-limiter :max-width="'1480px'"
                        class="container-fluid d-flex justify-content-between align-items-center px-4 py-2 w-100">
       <header>
@@ -44,7 +44,7 @@ async function go(route: RouteRecordRaw) {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <section id="top-navbar-navigation-items"
+      <section id="navbarSupportedContent"
                class="collapse navbar-collapse gap-2">
         <ul class="navbar-nav ms-auto mb-lg-0 gap-3 d-flex align-items-center">
           <li v-if="user" v-for="link in links"
