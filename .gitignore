@@ -1,3 +1,4 @@
 backend/bin
 backend/obj
 frontend/src/views/TestView.vue
+.idea
