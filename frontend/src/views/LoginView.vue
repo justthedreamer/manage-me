@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextInput from "../components/form/inputs/TextInput.vue";
+import TextInput from "../components/common/inputs/TextInput.vue";
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import Logo from "../components/common/Logo.vue";
@@ -13,7 +13,6 @@ const errorMessage = ref<string>("")
 
 async function handleSubmit(): Promise<void> {
   const error = await userService.loginAsync(login.value, password.value);
-
   if (error) {
     errorMessage.value = error;
   } else {

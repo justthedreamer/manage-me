@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
 import {computed, type PropType} from "vue";
-import {Priority} from "../../model/enums/Priority.ts";
-import {assertNever} from "../../helpers/Guards.ts";
+import {Priority} from "../../../model/enums/Priority.ts";
+import {assertNever} from "../../../helpers/Guards.ts";
 
 const props = defineProps({
   priority: {

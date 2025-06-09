@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {useUpdateStoryPopupStore} from "../../../stores/story/popups/UpdateStoryFormPopupStore.ts";
-import FormPopup from "../../utils/popups/FormPopup.vue";
-import PriorityInput from "../../form/inputs/PriorityInput.vue";
-import WorkingStateInput from "../../form/inputs/WorkingStateInput.vue";
-import TextInput from "../../form/inputs/TextInput.vue";
-import TextAreaInput from "../../form/inputs/TextAreaInput.vue";
+import FormPopup from "../../common/popup/FormPopup.vue";
+import PriorityInput from "../../common/inputs/PriorityInput.vue";
+import WorkingStateInput from "../../common/inputs/WorkingStateInput.vue";
+import TextInput from "../../common/inputs/TextInput.vue";
+import TextAreaInput from "../../common/inputs/TextAreaInput.vue";
 
 const store = useUpdateStoryPopupStore();
 

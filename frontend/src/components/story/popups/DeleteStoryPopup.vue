@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ConfirmPopup from "../../utils/popups/ConfirmPopup.vue";
+import ConfirmPopup from "../../common/popup/ConfirmPopup.vue";
 import {useDeleteStoryPopupStore} from "../../../stores/story/popups/DeleteStoryPopupStore.ts";
 
 const story = useDeleteStoryPopupStore();

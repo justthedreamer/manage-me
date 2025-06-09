@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed, type PropType} from "vue";
-import {WorkingState} from "../../model/enums/WorkingState.ts";
-import {assertNever} from "../../helpers/Guards.ts";
+import {WorkingState} from "../../../model/enums/WorkingState.ts";
+import {assertNever} from "../../../helpers/Guards.ts";
 
 const props = defineProps({
   state: {

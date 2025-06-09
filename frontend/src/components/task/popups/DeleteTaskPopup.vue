@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useDeleteTaskPopupStore} from "../../../stores/task/popups/DeleteTaskPopupStore.ts";
-import ConfirmPopup from "../../utils/popups/ConfirmPopup.vue";
+import ConfirmPopup from "../../common/popup/ConfirmPopup.vue";
 
 const store = useDeleteTaskPopupStore()
 

@@ -2,10 +2,10 @@
 import {type RouteRecordRaw, useRouter} from "vue-router";
 import {Routes} from "../../routing/Routes.ts";
 import {useUserStore} from "../../stores/user/UserStore.ts";
-import MaxWidthLimiter from "../utils/MaxWidthLimiter.vue";
+import MaxWidthLimiter from "./utils/MaxWidthLimiter.vue";
 import {storeToRefs} from "pinia";
 import {useUserAsideStore} from "../../stores/user/UserAsideStore.ts";
-import LoginButton from "../common/LoginButton.vue";
+import LoginButton from "../common/buttons/LoginButton.vue";
 import Logo from "../common/Logo.vue";
 
 const router = useRouter();

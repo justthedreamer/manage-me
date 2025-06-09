@@ -6,7 +6,6 @@ import DeleteStoryPopup from "../popups/DeleteStoryPopup.vue";
 import {useCreateStoryPopupStore} from "../../../stores/story/popups/CreateStoryPopupStore.ts";
 import {useUpdateStoryPopupStore} from "../../../stores/story/popups/UpdateStoryFormPopupStore.ts";
 import {useDeleteStoryPopupStore} from "../../../stores/story/popups/DeleteStoryPopupStore.ts";
-
 const store = useStoryToolboxStore()
 const createStoryPopupStore = useCreateStoryPopupStore();
 const updateStoryPopupStore = useUpdateStoryPopupStore();

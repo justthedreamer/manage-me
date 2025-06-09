@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useDoneTaskPopupStore} from "../../../stores/task/popups/DoneTaskPopupStore.ts";
-import ConfirmPopup from "../../utils/popups/ConfirmPopup.vue";
+import ConfirmPopup from "../../common/popup/ConfirmPopup.vue";
 
 const store = useDoneTaskPopupStore();
 

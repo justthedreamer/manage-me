@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Kanban from "../../kanban/Kanban.vue";
-import KanbanCol from "../../kanban/KanbanCol.vue";
+import Kanban from "../../common/kanban/Kanban.vue";
+import KanbanCol from "../../common/kanban/KanbanCol.vue";
 import {storeToRefs} from "pinia";
 import {useStoryKanbanStore} from "../../../stores/story/StoryKanbanStore.ts";
 import StoryKanbanCard from "./StoryKanbanCard.vue";
 import StoryToolbox from "../toolbox/StoryToolbox.vue";
-import Selectable from "../../utils/Selectable.vue";
+import Selectable from "../../common/utils/Selectable.vue";
 import {useStoryToolboxStore} from "../../../stores/story/StoryToolboxStore.ts";
 
 const store = useStoryKanbanStore();

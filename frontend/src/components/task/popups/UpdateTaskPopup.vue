@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import FullScreenWrapper from "../../utils/FullScreenWrapper.vue";
+import FullScreenWrapper from "../../layout/utils/FullScreenWrapper.vue";
 import {useUpdateTaskPopupStore} from "../../../stores/task/popups/UpdateTaskPopupStore.ts";
-import FormPopup from "../../utils/popups/FormPopup.vue";
-import PriorityInput from "../../form/inputs/PriorityInput.vue";
-import TextInput from "../../form/inputs/TextInput.vue";
-import TextAreaInput from "../../form/inputs/TextAreaInput.vue";
-import NumberInput from "../../form/inputs/NumberInput.vue";
+import FormPopup from "../../common/popup/FormPopup.vue";
+import PriorityInput from "../../common/inputs/PriorityInput.vue";
+import TextInput from "../../common/inputs/TextInput.vue";
+import TextAreaInput from "../../common/inputs/TextAreaInput.vue";
+import NumberInput from "../../common/inputs/NumberInput.vue";
 
 const store = useUpdateTaskPopupStore();
 

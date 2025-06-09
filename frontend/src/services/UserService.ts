@@ -17,8 +17,8 @@ async function loginAsync(login: string, password: string): Promise<ErrorMessage
     useLoaderStore().activate()
     try {
         const response = await authClient.login({login, password})
-        localStorage.setItem(ACCESS_TOKEN_KEY, response.accessToken)
-        localStorage.setItem(REFRESH_TOKEN_KEY, response.refreshToken)
+        sessionStorage.setItem(ACCESS_TOKEN_KEY, response.accessToken)
+        sessionStorage.setItem(REFRESH_TOKEN_KEY, response.refreshToken)
         await restoreUserStateAsync()
         return null;
     } catch (error: any) {
@@ -44,9 +44,9 @@ async function restoreUserStateAsync(): Promise<void> {
 
 function logout(): void {
     useLoaderStore().activate()
-    localStorage.removeItem(ACCESS_TOKEN_KEY)
-    localStorage.removeItem(REFRESH_TOKEN_KEY)
-    localStorage.removeItem(ATTACHED_PROJECT_ID_KEY)
+    sessionStorage.removeItem(ACCESS_TOKEN_KEY)
+    sessionStorage.removeItem(REFRESH_TOKEN_KEY)
+    sessionStorage.removeItem(ATTACHED_PROJECT_ID_KEY)
     useUserStore().$reset()
     useLoaderStore().deactivate()
 }

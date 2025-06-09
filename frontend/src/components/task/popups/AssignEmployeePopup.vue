@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import {useAssignEmployeePopupStore} from "../../../stores/task/popups/AssignEmployeePopupStore.ts";
-import FormPopup from "../../utils/popups/FormPopup.vue";
+import FormPopup from "../../common/popup/FormPopup.vue";
 import TaskKanbanCard from "../kanban/TaskKanbanCard.vue";
 import EmployeeSearch from "../../searching/EmployeeSearch.vue";
-import UserBadge from "../../badges/UserBadge.vue";
+import UserBadge from "../../common/badges/UserBadge.vue";
 import {taskEmployeeAssignmentFilter} from "../../../model/filters/EmployeeAssignmentFilter.ts";
 
 const store = useAssignEmployeePopupStore();

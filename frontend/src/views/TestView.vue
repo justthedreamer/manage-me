@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextInput from "../components/form/inputs/TextInput.vue";
+import TextInput from "../components/common/inputs/TextInput.vue";
 import {ref} from "vue";
 import authClient from "../api/AuthClient.ts";
 

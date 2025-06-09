@@ -2,7 +2,7 @@
 import type {User} from "../../../model/entities/User.ts";
 import EmployeeSearch from "../../searching/EmployeeSearch.vue";
 import {ref, watch} from "vue";
-import UserBadge from "../../badges/UserBadge.vue";
+import UserBadge from "../badges/UserBadge.vue";
 
 interface Props {
   id: string,

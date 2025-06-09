@@ -2,8 +2,8 @@
 import {computed} from "vue";
 import type {UUIDTypes} from "uuid";
 import {Routes} from "../routing/Routes.ts";
-import PriorityBadge from "../components/badges/PriorityBadge.vue";
-import WorkingStateBadge from "../components/badges/WorkingStateBadge.vue";
+import PriorityBadge from "../components/common/badges/PriorityBadge.vue";
+import WorkingStateBadge from "../components/common/badges/WorkingStateBadge.vue";
 import TasksKanban from "../components/task/kanban/TasksKanban.vue";
 import {useUserStore} from "../stores/user/UserStore.ts";
 import {storeToRefs} from "pinia";

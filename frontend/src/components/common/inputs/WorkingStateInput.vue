@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {WorkingState} from "../../../model/enums/WorkingState.ts";
-import WorkingStateBadge from "../../badges/WorkingStateBadge.vue";
-import Hover from "../../utils/Hover.vue";
+import WorkingStateBadge from "../badges/WorkingStateBadge.vue";
+import Hover from "../utils/Hover.vue";
 
 interface Props {
   id: string;

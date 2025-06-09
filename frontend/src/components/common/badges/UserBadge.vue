@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {computed, type PropType} from "vue";
-import type {User} from "../../model/entities/User.ts";
+import type {User} from "../../../model/entities/User.ts";
 import UserRoleBadge from "./UserRoleBadge.vue";
-import {UserRole} from "../../model/enums/UserRole.ts";
-import {assertNever} from "../../helpers/Guards.ts";
+import {UserRole} from "../../../model/enums/UserRole.ts";
+import {assertNever} from "../../../helpers/Guards.ts";
 
 const props = defineProps({
   user: {

@@ -1,6 +1,5 @@
 export enum UIMessageType {
     SUCCESS = 'success',
-    WARNING = 'warning',
     ERROR = 'error'
 }
 
@@ -15,14 +14,6 @@ export abstract class UIMessage {
 
 export class SuccessUIMessage extends UIMessage {
     readonly type: UIMessageType = UIMessageType.SUCCESS;
-
-    constructor(message: string) {
-        super(message);
-    }
-}
-
-export class WarningUIMessage extends UIMessage {
-    readonly type: UIMessageType = UIMessageType.WARNING;
 
     constructor(message: string) {
         super(message);

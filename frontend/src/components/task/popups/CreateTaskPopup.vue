@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {useCreateTaskFormStore} from "../../../stores/task/popups/CreateTaskPopupStore.ts";
-import FormPopup from "../../utils/popups/FormPopup.vue";
-import PriorityInput from "../../form/inputs/PriorityInput.vue";
-import TextInput from "../../form/inputs/TextInput.vue";
-import TextAreaInput from "../../form/inputs/TextAreaInput.vue";
-import NumberInput from "../../form/inputs/NumberInput.vue";
-import EmployeeAssignmentInput from "../../form/inputs/EmployeeAssignmentInput.vue";
+import FormPopup from "../../common/popup/FormPopup.vue";
+import PriorityInput from "../../common/inputs/PriorityInput.vue";
+import TextInput from "../../common/inputs/TextInput.vue";
+import TextAreaInput from "../../common/inputs/TextAreaInput.vue";
+import NumberInput from "../../common/inputs/NumberInput.vue";
+import EmployeeAssignmentInput from "../../common/inputs/EmployeeAssignmentInput.vue";
 
 const store = useCreateTaskFormStore();
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import KanbanCol from "../../kanban/KanbanCol.vue";
-import Kanban from "../../kanban/Kanban.vue";
+import KanbanCol from "../../common/kanban/KanbanCol.vue";
+import Kanban from "../../common/kanban/Kanban.vue";
 import {storeToRefs} from "pinia";
 import {computed, onUnmounted} from "vue";
 import type {Story} from "../../../model/entities/Story.ts";
 import TaskKanbanCard from "./TaskKanbanCard.vue";
 import {DoingTask, DoneTask, Task, TodoTask} from "../../../model/entities/Task.ts";
-import Selectable from "../../utils/Selectable.vue";
+import Selectable from "../../common/utils/Selectable.vue";
 import {useTaskToolboxStore} from "../../../stores/task/TaskToolboxStore.ts";
 import {useUserStore} from "../../../stores/user/UserStore.ts";
 import TaskToolbox from "../toolbox/TaskToolbox.vue";
