@@ -4,12 +4,11 @@ interface Props {
 }
 
 defineProps<Props>()
-
 </script>
 
 <template>
-  <div class="kanban d-flex flex-column border border-1 rounded bg-highlight d-flex gap-1">
-    <header class="d-flex justify-content-between align-items-center bg-dark rounded-top text-white p-2">
+  <div class="kanban d-flex flex-column border border-1 rounded gap-1">
+    <header class="d-flex justify-content-between align-items-center bg-body-secondary rounded-top p-2">
       <h3>{{ title }}</h3>
       <slot name="toolbox"></slot>
     </header>

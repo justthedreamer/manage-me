@@ -64,7 +64,7 @@ function isEmployeeSelected(user: User) {
     <input id="employee-search-phrase-input"
            type="text"
            placeholder="Search by name or id..."
-           class="employee-assignment-search-input w-50 mt-2 p-1 w-100 border-secondary-subtle border-1 rounded"
+           class="form-control w-50 mt-2 p-1 w-100"
            v-model="employeesListSearchPhraseInput">
   </div>
 </template>
@@ -74,16 +74,6 @@ function isEmployeeSelected(user: User) {
   border: 1px solid var(--bs-border-color) !important;
   overflow-y: scroll;
 }
-
-#employee-search-phrase-input {
-  border: 1px solid var(--bs-border-color) !important;
-  outline: none !important;
-}
-
-#employee-search-phrase-input:focus {
-  border-color: var(--bs-primary) !important;
-}
-
 .list-item:hover,
 .list-item:hover > span {
   background-color: var(--bs-secondary-bg-subtle);

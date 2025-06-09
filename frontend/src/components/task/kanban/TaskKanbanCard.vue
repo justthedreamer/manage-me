@@ -16,7 +16,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="task-card border rounded bg-white shadow-sm w-100 p-2 p-2">
+  <div class="task-card border rounded bg-body shadow-sm w-100 p-2 p-2">
     <header class="d-flex justify-content-between align-self-center">
       <p class="mb-0">{{ task.name }}</p>
       <div class="d-flex gap-1 align-items-center">

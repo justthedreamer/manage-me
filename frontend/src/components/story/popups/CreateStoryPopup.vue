@@ -39,7 +39,3 @@ const store = useCreateStoryPopupStore();
     </template>
   </form-popup>
 </template>
-
-<style scoped>
-
-</style>

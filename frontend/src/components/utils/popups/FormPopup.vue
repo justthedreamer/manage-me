@@ -23,7 +23,7 @@ const emit = defineEmits<{
       v-if="active">
     <form @submit.prevent
           :id="id"
-          class="d-flex flex-column gap-1 border border-2 rounded shadow p-1 bg-white text-dark p-2"
+          class="d-flex flex-column border border-2 bg-body rounded shadow gap-1 p-1 p-2"
           :class="width">
       <header class="d-flex justify-content-between align-items-center fs-3">
         <h4>{{ title }}</h4>
@@ -31,7 +31,7 @@ const emit = defineEmits<{
       </header>
       <hr class="m-0 p-0 mt-2 mb-2">
 
-      <main CLASS="d-flex flex-column gap-1">
+      <main class="d-flex flex-column gap-1">
         <slot name="description"></slot>
         <slot name="inputs"></slot>
       </main>
@@ -47,7 +47,3 @@ const emit = defineEmits<{
     </form>
   </full-screen-wrapper>
 </template>
-
-<style scoped>
-
-</style>

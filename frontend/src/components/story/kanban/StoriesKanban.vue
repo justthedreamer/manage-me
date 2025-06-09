@@ -11,9 +11,7 @@ import {useStoryToolboxStore} from "../../../stores/story/StoryToolboxStore.ts";
 const store = useStoryKanbanStore();
 const {storyColumns} = storeToRefs(store);
 const toolboxStore = useStoryToolboxStore();
-
 </script>
-
 
 <template>
   <kanban v-if="store.attachedProject" title="Stories">

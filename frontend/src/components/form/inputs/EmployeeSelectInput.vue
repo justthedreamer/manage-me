@@ -44,7 +44,3 @@ function selectEmployee(user: User | null) {
     <p class="form-text text-danger">{{ errorMessage }}</p>
   </div>
 </template>
-
-<style scoped>
-
-</style>

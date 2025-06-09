@@ -30,5 +30,4 @@ defineProps<Props>()
 .hover-wrapper.fade.off {
   opacity: 1;
 }
-
 </style>

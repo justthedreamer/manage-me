@@ -22,7 +22,7 @@ function goDetails() {
 </script>
 
 <template>
-  <div class="border rounded bg-white shadow-sm w-100 p-2 p-2">
+  <div class="border rounded bg-body shadow-sm w-100 p-2 p-2">
     <header class="d-flex justify-content-between align-items-center text-dark-emphasis gap-1">
       <p class="mb-0">{{ story.name }}</p>
       <priority-badge :priority="story.priority"/>

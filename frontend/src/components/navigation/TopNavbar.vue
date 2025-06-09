@@ -22,15 +22,14 @@ function isCurrentRoute(name: string | symbol | undefined): boolean {
 async function go(route: RouteRecordRaw) {
   await router.push(route);
 }
-
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm">
+  <nav id="top-navbar" class="navbar navbar-expand-lg shadow-sm bg-body-tertiary">
     <max-width-limiter :max-width="'1480px'"
                        class="container-fluid d-flex justify-content-between align-items-center px-4 py-2 w-100">
       <header>
-        <logo class="nav-item" :theme="'text-light'" @click="go(Routes.HOME_ROUTE_RECORD)"/>
+        <logo @click="go(Routes.HOME_ROUTE_RECORD)"/>
       </header>
 
       <button id="top-navbar-hamburger-button"
@@ -46,7 +45,7 @@ async function go(route: RouteRecordRaw) {
 
       <section id="navbarSupportedContent"
                class="collapse navbar-collapse gap-2">
-        <ul class="navbar-nav ms-auto mb-lg-0 gap-3 d-flex align-items-center">
+        <ul class="navbar-nav ms-auto mb-lg-0 gap-3 d-flex">
           <li v-if="user" v-for="link in links"
               class="nav-item">
             <span :class="{'text-primary' : isCurrentRoute(link.name)}"
@@ -54,7 +53,7 @@ async function go(route: RouteRecordRaw) {
           </li>
 
           <li class="nav-item">
-            <span v-if="user" @click="userAsideStore.open()">{{ user.fullName }}</span>
+            <span v-if="user" @click="userAsideStore.open()">{{ user.fullName }} <i class="bi bi-person"/></span>
             <login-button v-else/>
           </li>
         </ul>
@@ -68,16 +67,9 @@ h1:hover {
   cursor: pointer;
 }
 
-.nav-item,
-.nav-item > a {
-  text-decoration: none !important;
-  color: var(--bs-secondary) !important;
-
-}
-
 .nav-item:hover,
 .nav-item > a:hover {
-  color: var(--bs-white) !important;
+  color: var(--bs-link-hover-color) !important;
   cursor: pointer;
 }
 </style>
