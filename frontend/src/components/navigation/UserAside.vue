@@ -5,6 +5,9 @@ import {useUserAsideStore} from "../../stores/user/UserAsideStore.ts";
 import UserRoleBadge from "../badges/UserRoleBadge.vue";
 import {useRouter} from "vue-router";
 import {Routes} from "../../routing/Routes.ts";
+import {Theme} from "../../model/enums/Themes.ts";
+import {ref} from "vue";
+import themeService from "../../services/ThemeService.ts";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -17,15 +20,26 @@ function signOut() {
   userStore.setUser(null);
   router.push(Routes.LOGIN_ROUTE_RECORD)
 }
+
+const activeTheme = ref<Theme>(getActiveTheme())
+
+function getActiveTheme(): Theme {
+  return document.body.getAttribute("data-bs-theme") as Theme;
+}
+
+function setThemeMode(theme: Theme) {
+  themeService.setTheme(theme);
+  activeTheme.value = theme;
+}
 </script>
 
 <template>
   <div v-if="user"
        id="user-aside"
-       class="d-flex flex-column bg-dark text-white shadow-lg p-3"
+       class="d-flex flex-column bg-body-tertiary shadow-sm p-3"
        :class="{'opened': store.opened}">
     <i class="bi bi-x fs-3 align-self-end pointer mb-2" @click="store.close()"/>
-    <header class="border border-secondary rounded p-3 mb-4">
+    <header class="border border-secondary-subtle rounded p-3 mb-4">
       <section class="fs-3 text-center">
         <i class="bi bi-person me-1"></i>
         <span>{{ user.fullName }}</span>
@@ -36,9 +50,24 @@ function signOut() {
         <user-role-badge :role="user.role"/>
       </section>
     </header>
-    <main class="h-100">
-      <div class="nav-item rounded pointer w-100 p-2">
-        <span>Your profile</span>
+    <main class="d-flex justify-content-end h-100">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+          Theme
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+          <li v-for="theme in Theme">
+            <span class="dropdown-item text-capitalize"
+                  :class="{'active' : activeTheme === theme}"
+                  @click="setThemeMode(theme)">
+              {{ theme }}
+            </span>
+          </li>
+        </ul>
       </div>
     </main>
     <footer>
@@ -63,14 +92,5 @@ function signOut() {
 
 #user-aside.opened {
   transform: translateX(0);
-}
-
-.nav-item {
-  background-color: var(--bs-secondary-text-emphasis);
-  transition: .2s;
-}
-
-.nav-item:hover {
-  background-color: var(--bs-secondary);
 }
 </style>

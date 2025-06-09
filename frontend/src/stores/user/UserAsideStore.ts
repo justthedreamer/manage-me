@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 
-export const useUserAsideStore = defineStore("userAsideStoer", {
+export const useUserAsideStore = defineStore("userAsideStore", {
     state() {
         return {
             opened: false,
