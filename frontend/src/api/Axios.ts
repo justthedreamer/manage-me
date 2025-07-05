@@ -2,10 +2,11 @@ import axios from "axios";
 import {ACCESS_TOKEN_KEY} from "../config/LocalstorageKeys.ts";
 
 const http = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "http://localhost:8080/api",
     headers: {
         "Content-Type": "application/json"
-    }
+    },
+    validateStatus: () => true
 });
 
 http.interceptors.request.use((config) => {

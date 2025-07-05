@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {Priority} from "../../../model/enums/Priority.ts";
+import {Priority} from "../../../enums/Priority.ts";
 import PriorityBadge from "../badges/PriorityBadge.vue";
-import Hover from "../utils/Hover.vue";
+import Hover from "../../utils/Hover.vue";
 
 interface Props {
   id: string;

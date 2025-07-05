@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {User} from "../../../model/entities/User.ts";
-import EmployeeSearch from "../../searching/EmployeeSearch.vue";
+import type {User} from "../../../types/User.ts";
+import EmployeeSearch from "../../features/employee-search/EmployeeSearch.vue";
 import {ref, watch} from "vue";
 import UserBadge from "../badges/UserBadge.vue";
 

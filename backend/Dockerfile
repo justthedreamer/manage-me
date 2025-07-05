@@ -1,7 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-COPY *.csproj ./
+COPY . ./
 RUN dotnet restore
 
 COPY . ./
@@ -14,4 +14,4 @@ COPY --from=build /app/out ./
 
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "backend.dll"]
+ENTRYPOINT ["dotnet", "API.dll"]

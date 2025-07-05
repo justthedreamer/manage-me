@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FullScreenWrapper from "../../layout/utils/FullScreenWrapper.vue";
+import FullScreenWrapper from "../../utils/FullScreenWrapper.vue";
 
 defineProps({
   id: {

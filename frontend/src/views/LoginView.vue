@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import TextInput from "../components/common/inputs/TextInput.vue";
 import {ref} from "vue";
-import {useRouter} from "vue-router";
 import Logo from "../components/common/Logo.vue";
 import userService from "../services/UserService.ts";
+import {useRouter} from "vue-router";
 import {Routes} from "../routing/Routes.ts";
 
 const router = useRouter();
@@ -12,11 +12,9 @@ const password = ref<string>("")
 const errorMessage = ref<string>("")
 
 async function handleSubmit(): Promise<void> {
-  const error = await userService.loginAsync(login.value, password.value);
-  if (error) {
-    errorMessage.value = error;
-  } else {
-    await router.push(Routes.PROJECT_ROUTE_RECORD);
+  const isSuccess = await userService.loginAsync(login.value, password.value);
+  if (isSuccess) {
+    await router.push(Routes.PROJECT_ROUTE_RECORD)
   }
 }
 </script>

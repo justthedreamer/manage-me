@@ -1,0 +1,29 @@
+@backend_HostAddress = http://localhost:5197/api
+@access_token =;
+@refresh_token=;
+
+###
+
+POST {{backend_HostAddress}}/user/login
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "password": "admin"
+}
+
+###
+
+GET {{backend_HostAddress}}/me
+Authorization: Bearer {{access_token}}
+Accept: application/json
+
+###
+
+POST {{backend_HostAddress}}/refresh
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "refreshToken": ""
+}

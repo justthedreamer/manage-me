@@ -3,7 +3,6 @@ import HomeView from "../views/HomeView.vue";
 import ProjectView from "../views/ProjectView.vue";
 import StoryView from "../views/StoryView.vue";
 import ProjectAttachmentView from "../views/ProjectAttachmentView.vue";
-import TestView from "../views/TestView.vue";
 import LoginView from "../views/LoginView.vue";
 
 export class Routes {
@@ -39,18 +38,11 @@ export class Routes {
         component: ProjectAttachmentView,
     };
 
-    static readonly TEST_RECORD: RouteRecordRaw = {
-        path: "/test",
-        name: "Test",
-        component: TestView,
-    }
-
     static readonly All: readonly RouteRecordRaw[] = [
         this.HOME_ROUTE_RECORD,
         this.LOGIN_ROUTE_RECORD,
         this.PROJECT_ROUTE_RECORD,
         this.PROJECT_STORY_ROUTE_RECORD,
         this.PROJECT_ATTACHMENT_RECORD,
-        this.TEST_RECORD,
     ];
 }

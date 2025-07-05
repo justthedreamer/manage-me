@@ -1,10 +1,10 @@
-import type {Story} from "../model/entities/Story.ts";
+import type {Story} from "../types/Story.ts";
 import {InvalidOperationError} from "../errors/InvalidOperationError.ts";
-import type {Project} from "../model/entities/Project.ts";
-import type {Task} from "../model/entities/Task.ts";
+import type {Project} from "../types/Project.ts";
+import type {Task} from "../types/Task.ts";
 import {InvalidArgumentError} from "../errors/InvalidArgumentError.ts";
-import {User} from "../model/entities/User.ts";
-import {UserRole} from "../model/enums/UserRole.ts";
+import {UserRole} from "../enums/UserRole.ts";
+import type {User} from "../types/User.ts";
 
 export function assertUserDefined(user: User | null | undefined): asserts user is User {
     if (!user) {

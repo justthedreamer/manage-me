@@ -1,4 +1,4 @@
-import type {Theme} from "../model/enums/Themes.ts";
+import type {Theme} from "../enums/Themes.ts";
 
 export interface ThemeService {
     restoreTheme(): void;

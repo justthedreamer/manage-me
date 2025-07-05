@@ -1,38 +1,53 @@
 <script setup lang="ts">
-import {Routes} from "../routing/Routes.ts";
-import {useUserStore} from "../stores/user/UserStore.ts";
-import {storeToRefs} from "pinia";
-import type {UUIDTypes} from "uuid";
 
-const userStore = useUserStore();
-const {user, attachedProject, associatedProjects} = storeToRefs(userStore);
+import {useProjectDataStore} from "../stores/data/project-data-store.ts";
+import {storeToRefs} from "pinia";
+import {Routes} from "../routing/Routes.ts";
+import {onMounted, ref} from "vue";
+import type {Project} from "../types/Project.ts";
+import projectClient from "../api/clients/ProjectClient.ts";
+
+//state
+const errorState = ref<boolean>(false);
+
+// refs
+const projectDataStore = useProjectDataStore();
+const {currentProjectId} = storeToRefs(projectDataStore)
+const projects = ref<Project[]>()
+
+onMounted(async () => {
+  const response = await projectClient.getAll()
+  if (response.isSuccess) {
+    projects.value = response.requestResult!
+  } else {
+    errorState.value = true;
+  }
+})
 
 function isAttachedProject(projectId: string): boolean {
-  return attachedProject.value?.id === projectId;
+  console.log(currentProjectId.value + " - " + projectId);
+  return currentProjectId.value === projectId;
 }
 
-function projectRowClass(projectId: UUIDTypes): string {
-  return isAttachedProject(projectId.toString()) ? "table-success" : "";
+function projectRowClass(projectId: string): string {
+  return isAttachedProject(projectId) ? "table-success" : "";
 }
 
-function buttonClass(projectId: UUIDTypes): string {
-  return isAttachedProject(projectId.toString()) ? "btn btn-secondary disabled" : "btn btn-primary";
+function buttonClass(projectId: string): string {
+  return isAttachedProject(projectId) ? "btn btn-secondary disabled" : "btn btn-primary";
 }
 
-function canAttachProject(projectId: UUIDTypes): boolean {
-  return !isAttachedProject(projectId.toString());
+function canAttachProject(projectId: string): boolean {
+  return !isAttachedProject(projectId);
 }
+
 </script>
 
 <template>
   <h2>Projects</h2>
   <hr/>
 
-  <div v-if="!user" class="alert alert-warning" role="alert">
-    You must log in to preview associated projects.
-  </div>
-
-  <div v-else-if="!user.attachedProjectId" class="alert alert-warning" role="alert">
+  <div v-if="!currentProjectId" class="alert alert-warning" role="alert">
     You don't have any attached project. Select one from the list below.
   </div>
 
@@ -43,7 +58,7 @@ function canAttachProject(projectId: UUIDTypes): boolean {
     tab or attach another one from the list below.
   </div>
 
-  <table v-if="user" class="table border border-1 mt-3">
+  <table v-if="!errorState" class="table border border-1 mt-3">
     <thead class="bg-dark text-light">
     <tr>
       <th scope="col">Name</th>
@@ -52,16 +67,16 @@ function canAttachProject(projectId: UUIDTypes): boolean {
     </tr>
     </thead>
     <tbody>
-    <tr
-        v-for="project in associatedProjects"
-        :key="project.id.toString()"
+    <tr v-for="project in projects"
+        :key="project.id"
         :class="projectRowClass(project.id)">
       <td>{{ project.name }}</td>
       <td>{{ project.description }}</td>
       <td>
         <button
             :class="buttonClass(project.id)"
-            @click="canAttachProject(project.id) && userStore.attachProject(project.id)">
+            @click="canAttachProject(project.id) && projectDataStore
+            .setCurrentProject(project.id)">
           Attach
         </button>
       </td>

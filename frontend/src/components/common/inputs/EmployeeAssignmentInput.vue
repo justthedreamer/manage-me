@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {EmployeeAssignmentOptions} from "../../../model/enums/EmployeeAssigmentOption.ts";
-import type {User} from "../../../model/entities/User.ts";
+import {EmployeeAssignmentOptions} from "../../../enums/EmployeeAssigmentOption.ts";
+import type {User} from "../../../types/User.ts";
 import EmployeeSelectInput from "./EmployeeSelectInput.vue";
 import {ref, watch} from "vue";
 

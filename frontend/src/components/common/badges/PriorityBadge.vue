@@ -1,15 +1,14 @@
 <script setup lang="ts">
 
-import {computed, type PropType} from "vue";
-import {Priority} from "../../../model/enums/Priority.ts";
+import {computed} from "vue";
+import {Priority} from "../../../enums/Priority.ts";
 import {assertNever} from "../../../helpers/Guards.ts";
 
-const props = defineProps({
-  priority: {
-    type: String as PropType<Priority>,
-    required: true
-  }
-})
+interface Props {
+  priority: Priority;
+}
+
+const props = defineProps<Props>()
 
 const utilities = computed(() => {
   switch (props.priority) {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useLoaderStore} from "../../stores/common/LoaderStore.ts";
+import {useLoaderStore} from "../../stores/features/loader-store.ts";
 
 const store = useLoaderStore();
 

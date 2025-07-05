@@ -1,19 +1,31 @@
 <script setup lang="ts">
 import {Routes} from "../routing/Routes.ts";
+import StoriesKanban from "../components/features/story-kanban/StoriesKanban.vue";
+import {onMounted, ref} from "vue";
+import type {Project} from "../types/Project.ts";
+import {useProjectDataStore} from "../stores/data/project-data-store.ts";
 import {storeToRefs} from "pinia";
-import StoriesKanban from "../components/story/kanban/StoriesKanban.vue";
-import {useUserStore} from "../stores/user/UserStore.ts";
+import projectService from "../services/ProjectService.ts";
 
-const userStore = useUserStore();
-const {attachedProject} = storeToRefs(userStore);
+const projectDataStore = useProjectDataStore();
+const {currentProjectId} = storeToRefs(projectDataStore);
+const project = ref<Project | null>(null);
+
+onMounted(async () => {
+  projectDataStore.restore();
+  if (currentProjectId.value) {
+    project.value = await projectService.getByIdAsync(currentProjectId.value);
+    console.log(project.value);
+  }
+})
 
 </script>
 
 <template>
-  <div v-if="attachedProject" id="attached-project-wrapper">
+  <div v-if="project" id="attached-project-wrapper">
     <header>
-      <h2>{{ attachedProject.name }}</h2>
-      <p>{{ attachedProject.description }}</p>
+      <h2>{{ project.name }}</h2>
+      <p>{{ project.description }}</p>
       <hr>
     </header>
     <stories-kanban/>

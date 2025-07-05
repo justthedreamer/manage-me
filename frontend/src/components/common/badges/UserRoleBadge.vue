@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {UserRole} from "../../../model/enums/UserRole.ts";
+import {UserRole} from "../../../enums/UserRole.ts";
 
 interface Props {
   role: UserRole

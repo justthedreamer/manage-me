@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import {computed, type PropType} from "vue";
-import type {User} from "../../../model/entities/User.ts";
+import {computed} from "vue";
+import type {User} from "../../../types/User.ts";
 import UserRoleBadge from "./UserRoleBadge.vue";
-import {UserRole} from "../../../model/enums/UserRole.ts";
+import {UserRole} from "../../../enums/UserRole.ts";
 import {assertNever} from "../../../helpers/Guards.ts";
 
-const props = defineProps({
-  user: {
-    type: Object as PropType<User>,
-    required: true
-  }
-})
+interface Props {
+  user: User
+}
+
+const props = defineProps<Props>()
 
 const badgeColor = computed(() => {
-  switch (props.user?.role) {
+  switch (props.user.role) {
     case UserRole.DEVELOPER:
       return "bg-primary"
     case UserRole.DEVOPS:
@@ -32,6 +31,6 @@ const badgeColor = computed(() => {
        :class="badgeColor">
     <user-role-badge :role="user.role"/>
     <span class="ps-1 pe-1">|</span>
-    <span>{{ user.name }} {{ user.surname }}</span>
+    <span>{{ user.name }} {{ user.name }}</span>
   </div>
 </template>

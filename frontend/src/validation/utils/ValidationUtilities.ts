@@ -1,5 +1,5 @@
 import type {ValidatorFn} from "../Validation.ts";
-import type {User} from "../../model/entities/User.ts";
+import type {User} from "../../types/User.ts";
 
 export function required(value: string): string {
     return value.trim() ? "" : "This field is required.";
